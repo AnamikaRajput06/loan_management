@@ -9,16 +9,10 @@ class Ability
       return unless user.present?
 
       if user.admin?
-        can :index, Loan, admin_id: user.id
-        can :approve, Loan, admin_id: user.id
-        can :reject, Loan, admin_id: user.id
-        can :edit, Loan, admin_id: user.id
+        can [:index, :approve, :reject, :edit], Loan, admin_id: user.id
       else
-        can :index, Loan, user_id: user.id
-        can :new, Loan
-        can :create, Loan
-        can :reject, Loan, user_id: user.id
-        can :pay, Loan, user_id: user.id
+        can [:new, :create], Loan
+        can [:index, :reject, :accept, :pay], Loan, user_id: user.id
       end
 
     # The first argument to `can` is the action you are giving the user
