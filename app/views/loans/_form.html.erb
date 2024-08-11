@@ -1,0 +1,32 @@
+<%= form_with(model: loan) do |form| %>
+  <% if loan.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(loan.errors.count, "error") %> prohibited this loan from being saved:</h2>
+
+      <ul>
+        <% loan.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="w-50">
+
+  <div class="form-group py-2">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+
+  <div class="form-group py-2">
+    <%= form.label :amount, style: "display: block" %>
+    <%= form.number_field :amount, class: "form-control"%>
+  </div>
+  </div>
+
+  <div class="d-flex">
+    <%= form.submit class: 'btn btn-primary'%>
+    <%= link_to 'Back', loans_path, class: 'btn btn-secondary mx-3' %>
+  </div>
+
+<% end %>

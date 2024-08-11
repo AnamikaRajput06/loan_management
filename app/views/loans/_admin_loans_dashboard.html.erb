@@ -1,0 +1,41 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+  <h1>Loans</h1>
+</div>
+
+<table class="table table-striped table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Requested By</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Interest Rate</th>
+      <th scope="col">Total Payable Amount</th>
+      <th scope="col">User Wallet</th>
+      <th scope="col">Status</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @loans.each do |loan| %>
+      <tr style="vertical-align: middle">
+        <td><%= loan.user.full_name %></td>
+        <td><%= loan.amount %></td>
+        <td><%= loan.interest_rate %></td>
+        <td><%= loan.total_payable_amount %></td>
+        <td><%= loan.user.wallet %></td>
+        <td><%= loan.status.humanize %></td>
+        <td>
+          <div class="d-flex">
+            <% if loan.requested?%>
+
+              <%= link_to 'Approve', edit_loan_path(loan), class: 'btn btn-primary' %>
+              <%= button_to "Reject", reject_loan_path(loan), method: :patch, class: 'btn btn-danger mx-2' %>
+            <% else %>
+              -
+            <%end%>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

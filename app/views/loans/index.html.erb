@@ -1,0 +1,8 @@
+<%if notice.present? %>
+  <p style="color: green"><%= notice %></p>
+<%end%>
+<%if current_user.admin? %>
+  <%= render 'admin_loans_dashboard' %>
+<%else%>
+  <%= render 'employee_loans_dashboard' %>
+<%end%>
