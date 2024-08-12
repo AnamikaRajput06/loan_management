@@ -19,7 +19,7 @@ end
 admin_user = User.create!(email: 'admin@diatoz.com', password: 'admin@123', first_name: 'Admin', last_name: 'User', wallet: 1000000)
 UserRole.create!(user: admin_user, role: Role.find_by(name: 'admin'))
 
-# Create a user with user role
+# Create a user with employee role
 users = [
   { email: 'employee1@diatoz.com', password: 'employee@123', first_name: 'Employee', last_name: 'User1' },
   { email: 'employee2@diatoz.com', password: 'employee@123', first_name: 'Employee', last_name: 'User2' },
